@@ -1,0 +1,126 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Venzar — Welcome</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+	<style>
+		:root{
+			--cream:#f6efe6;
+			--teal:#2b6f6b;
+			--burnt:#c75b3b;
+			--muted:#6b5e4a;
+			--glass: rgba(255,255,255,0.65);
+			--max-width:1100px;
+		}
+		*{box-sizing:border-box}
+		html,body{height:100%}
+		body{
+			margin:0;
+			font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+			background: linear-gradient(180deg,var(--cream) 0%, #f3eadf 50%);
+			color:var(--muted);
+			-webkit-font-smoothing:antialiased;
+			-moz-osx-font-smoothing:grayscale;
+			display:flex;
+			align-items:center;
+			justify-content:center;
+			padding:48px 20px;
+		}
+		.grain{
+			pointer-events:none;
+			position:fixed;inset:0;mix-blend-mode:overlay;opacity:0.06;background-image:radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px);background-size:3px 3px;
+		}
+		.container{
+			width:100%;max-width:var(--max-width);display:flex;gap:40px;align-items:center;justify-content:space-between;
+			background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.75));
+			border-radius:16px;padding:36px;box-shadow:0 8px 30px rgba(20,20,20,0.12);backdrop-filter: blur(6px);
+		}
+		.hero{
+			flex:1 1 60%;min-width:260px;
+		}
+		.logo{
+			display:flex;align-items:center;gap:12px;margin-bottom:10px;
+		}
+		.mark{
+			width:48px;height:48px;border-radius:8px;background:linear-gradient(135deg,var(--teal), #4fb0a8);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-family:'Playfair Display',serif;box-shadow:0 4px 12px rgba(43,111,107,0.18)
+		}
+		h1{font-family:'Playfair Display',serif;font-size:38px;margin:6px 0 8px;color:#2d3b36}
+		p.lead{margin:0 0 18px;color:#4b453f;font-size:16px;line-height:1.5}
+		.cta-row{display:flex;gap:12px;align-items:center}
+		.btn{
+			display:inline-block;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:600;color:white;background:var(--teal);box-shadow:0 6px 18px rgba(43,111,107,0.18);
+		}
+		.btn.alt{background:transparent;color:var(--muted);border:1px solid rgba(107,94,74,0.12);}
+		.panel{flex:1 1 36%;min-width:220px;background:linear-gradient(180deg, rgba(199,91,59,0.06), rgba(255,255,255,0.02));border-left:1px dashed rgba(107,94,74,0.06);padding:20px;border-radius:10px}
+		.panel h3{margin:0 0 8px;font-size:18px;color:var(--burnt);font-family:'Playfair Display',serif}
+		.features{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+		.feature{display:flex;gap:10px;align-items:flex-start}
+		.badge{width:44px;height:44px;border-radius:8px;background:var(--glass);display:flex;align-items:center;justify-content:center;color:var(--burnt);font-weight:700;font-family:'Playfair Display',serif;border:1px solid rgba(107,94,74,0.05)}
+		footer{margin-top:18px;font-size:12px;color:#7b6f63}
+
+		/* Responsive */
+		@media (max-width:880px){
+			.container{flex-direction:column;padding:28px}
+			h1{font-size:30px}
+			.panel{width:100%}
+			.cta-row{flex-direction:column;align-items:stretch}
+			.btn{width:100%;text-align:center}
+		}
+	</style>
+</head>
+<body>
+	<div class="grain" aria-hidden></div>
+	<div class="container" role="main">
+		<section class="hero">
+			<div class="logo">
+				<div class="mark">VZ</div>
+				<div>
+					<div style="font-size:12px;color:#8a8176;letter-spacing:1px;text-transform:uppercase">Venzar</div>
+					<div style="font-size:11px;color:#aaa;margin-top:2px">crafted with care</div>
+				</div>
+			</div>
+			<h1>Welcome home — timeless design, modern comfort</h1>
+			<p class="lead">At Venzar we blend vintage warmth with contemporary simplicity. Explore curated pieces, thoughtful details, and a welcoming community.</p>
+			<div class="cta-row">
+				<a class="btn" href="#explore">Explore Collections</a>
+				<a class="btn alt" href="#about">Learn More</a>
+			</div>
+			<footer>
+				<div style="margin-top:14px">A small atelier for handpicked goods — join us for new arrivals and stories.</div>
+			</footer>
+		</section>
+
+		<aside class="panel" aria-labelledby="panel-heading">
+			<h3 id="panel-heading">This season</h3>
+			<div class="features">
+				<div class="feature">
+					<div class="badge">01</div>
+					<div>
+						<strong style="display:block;color:#3b3b36">Heritage Fabrics</strong>
+						<span style="font-size:13px;color:#6b6156">Natural fibers with a modern cut.</span>
+					</div>
+				</div>
+				<div class="feature">
+					<div class="badge">02</div>
+					<div>
+						<strong style="display:block;color:#3b3b36">Sustainable Sourcing</strong>
+						<span style="font-size:13px;color:#6b6156">Materials chosen for longevity.</span>
+					</div>
+				</div>
+				<div class="feature">
+					<div class="badge">03</div>
+					<div>
+						<strong style="display:block;color:#3b3b36">Community Stories</strong>
+						<span style="font-size:13px;color:#6b6156">Designs inspired by real lives.</span>
+					</div>
+				</div>
+			</div>
+		</aside>
+	</div>
+</body>
+</html>
