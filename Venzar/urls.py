@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from venzarbags.views import landing
+from venzarbags import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', landing, name='landing'),
+    path('', views.landing, name='landing'),
+    path('login/', views.login, name='login'),
 ]
