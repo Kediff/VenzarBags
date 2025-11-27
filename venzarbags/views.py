@@ -20,3 +20,9 @@ def login(request):
             return HttpResponse("Invalid credentials", status=401)
     else:
         return render(request, 'login.html')
+    
+def dashboard(request):
+    if not request.user.is_authenticated:
+        return HttpResponse("Unauthorized", status=401)
+    
+    return render(request, 'dashboard.html', {'user': request.user})
