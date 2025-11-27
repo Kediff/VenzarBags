@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Venzar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --cream: #f6efe6;
+      --leather: #5b4036;
+      --burnt: #c75b3b;
+      --muted: #6b5e4a;
+      --card-bg: #fff8f4;
+      --ink: #231f20;
+      --gold: #c9a961;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(180deg, var(--cream) 0%, #efe6db 100%);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(8px);
+      padding: 16px 24px;
+      border-bottom: 1px solid rgba(91, 64, 54, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .logo-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .logo-badge {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--leather), #8b5a4a);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+    }
+
+    .brand-name {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name h1 {
+      font-size: 18px;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      color: var(--leather);
+    }
+
+    .brand-name span {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      list-style: none;
+      flex: 1;
+    }
+
+    .nav-link {
+      padding: 8px 14px;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-link:hover {
+      background: rgba(199, 91, 59, 0.06);
+      color: var(--ink);
+    }
+
+    .nav-link.active {
+      background: rgba(199, 91, 59, 0.1);
+      color: var(--burnt);
+      font-weight: 600;
+    }
+
+    .navbar-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-secondary {
+      padding: 8px 14px;
+      background: transparent;
+      border: 1px solid var(--muted);
+      color: var(--muted);
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--leather);
+      color: var(--leather);
+    }
+
+    /* ===== MAIN CONTAINER ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    /* ===== WELCOME SECTION ===== */
+    .welcome-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 20px rgba(35, 31, 32, 0.05);
+      border: 1px solid rgba(35, 31, 32, 0.04);
+    }
+
+    .welcome-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .welcome-text h2 {
+      font-size: 26px;
+      font-family: 'Playfair Display', serif;
+      color: var(--leather);
+      margin-bottom: 4px;
+    }
+
+    .welcome-text p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .welcome-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-primary {
+      padding: 10px 16px;
+      background: var(--leather);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background: #4a3229;
+      transform: translateY(-2px);
+    }
+
+    /* ===== STATS CARDS ===== */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(35, 31, 32, 0.05);
+      border: 1px solid rgba(35, 31, 32, 0.04);
+      text-align: center;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--leather);
+      margin-bottom: 6px;
+    }
+
+    .stat-note {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ===== CONTENT GRID ===== */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 24px;
+    }
+
+    /* ===== RECENT ORDERS ===== */
+    .section-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(35, 31, 32, 0.05);
+      border: 1px solid rgba(35, 31, 32, 0.04);
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      color: var(--leather);
+      margin-bottom: 20px;
+    }
+
+    .orders-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .orders-table th {
+      padding: 12px 8px;
+      text-align: left;
+      border-bottom: 2px solid rgba(91, 64, 54, 0.1);
+      color: var(--leather);
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .orders-table td {
+      padding: 14px 8px;
+      border-bottom: 1px solid rgba(91, 64, 54, 0.06);
+      color: var(--ink);
+    }
+
+    .orders-table tr:hover {
+      background: rgba(199, 91, 59, 0.02);
+    }
+
+    .order-id {
+      font-weight: 600;
+      color: var(--leather);
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      background: rgba(199, 91, 59, 0.1);
+      color: var(--burnt);
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .status-badge.completed {
+      background: rgba(43, 111, 107, 0.1);
+      color: #2b6f6b;
+    }
+
+    .status-badge.pending {
+      background: rgba(201, 169, 97, 0.1);
+      color: var(--gold);
+    }
+
+    /* ===== WISHLIST ===== */
+    .wishlist-section {
+      margin-top: 24px;
+    }
+
+    .wishlist-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .wishlist-item {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(91, 64, 54, 0.08);
+      transition: all 0.2s ease;
+    }
+
+    .wishlist-item:hover {
+      box-shadow: 0 8px 24px rgba(35, 31, 32, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .item-thumb {
+      width: 100%;
+      height: 120px;
+      background: linear-gradient(135deg, #f7efe7, #fff);
+      border-bottom: 1px solid rgba(91, 64, 54, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 32px;
+    }
+
+    .item-info {
+      padding: 12px;
+    }
+
+    .item-name {
+      font-weight: 600;
+      color: var(--leather);
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+
+    .item-desc {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .item-price {
+      font-weight: 700;
+      color: var(--burnt);
+      font-size: 14px;
+    }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .widget {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 4px 20px rgba(35, 31, 32, 0.05);
+      border: 1px solid rgba(35, 31, 32, 0.04);
+    }
+
+    .widget-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--leather);
+      margin-bottom: 12px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .widget-list {
+      list-style: none;
+    }
+
+    .widget-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(91, 64, 54, 0.06);
+      font-size: 13px;
+    }
+
+    .widget-list li:last-child {
+      border-bottom: none;
+    }
+
+    .widget-list a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .widget-list a:hover {
+      color: var(--leather);
+    }
+
+    .widget-content {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .widget-content a {
+      color: var(--burnt);
+      text-decoration: none;
+    }
+
+    .widget-content a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .wishlist-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .sidebar {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar-container {
+        gap: 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .wishlist-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        grid-template-columns: 1fr;
+      }
+
+      .welcome-header {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .welcome-actions {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .navbar-container {
+        flex-wrap: wrap;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        padding: 16px 12px;
+      }
+
+      .section-card {
+        padding: 16px;
+      }
+
+      .orders-table {
+        font-size: 12px;
+      }
+
+      .orders-table th,
+      .orders-table td {
+        padding: 8px 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="#" class="logo-brand">
+        <div class="logo-badge">VZ</div>
+        <div class="brand-name">
+          <h1>Venzar</h1>
+          <span>Vintage Bags</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#" class="nav-link active">Overview</a></li>
+        <li><a href="#" class="nav-link">Orders</a></li>
+        <li><a href="#" class="nav-link">Wishlist</a></li>
+        <li><a href="#" class="nav-link">Messages</a></li>
+        <li><a href="#" class="nav-link">Settings</a></li>
+      </ul>
+
+      <div class="navbar-actions">
+        <button class="btn-secondary">Sign Out</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+    <!-- WELCOME CARD -->
+    <div class="welcome-card">
+      <div class="welcome-header">
+        <div class="welcome-text">
+          <h2>Welcome back, Charlyn</h2>
+          <p>Member since November 2022</p>
+        </div>
+        <div class="welcome-actions">
+          <button class="btn-primary">Edit Profile</button>
+          <button class="btn-primary">View All Orders</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS GRID -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Orders</div>
+        <div class="stat-value">24</div>
+        <div class="stat-note">Last 12 months</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total Spent</div>
+        <div class="stat-value">$1,240</div>
+        <div class="stat-note">Lifetime total</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Wishlist</div>
+        <div class="stat-value">8</div>
+        <div class="stat-note">Saved items</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Store Credit</div>
+        <div class="stat-value">$85</div>
+        <div class="stat-note">Available balance</div>
+      </div>
+    </div>
+
+    <!-- CONTENT GRID -->
+    <div class="content-grid">
+      <!-- MAIN COLUMN -->
+      <div>
+        <!-- RECENT ORDERS -->
+        <div class="section-card">
+          <h3 class="section-title">Recent Orders</h3>
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th>Order</th>
+                <th>Date</th>
+                <th>Items</th>
+                <th>Total</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="order-id">#VZ-2024-0821</td>
+                <td>Nov 22, 2024</td>
+                <td>2</td>
+                <td>$245.00</td>
+                <td><span class="status-badge completed">Delivered</span></td>
+              </tr>
+              <tr>
+                <td class="order-id">#VZ-2024-0820</td>
+                <td>Nov 18, 2024</td>
+                <td>1</td>
+                <td>$89.50</td>
+                <td><span class="status-badge completed">Delivered</span></td>
+              </tr>
+              <tr>
+                <td class="order-id">#VZ-2024-0819</td>
+                <td>Nov 12, 2024</td>
+                <td>3</td>
+                <td>$312.00</td>
+                <td><span class="status-badge pending">In Transit</span></td>
+              </tr>
+              <tr>
+                <td class="order-id">#VZ-2024-0818</td>
+                <td>Nov 8, 2024</td>
+                <td>1</td>
+                <td>$156.75</td>
+                <td><span class="status-badge completed">Delivered</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- WISHLIST -->
+        <div class="section-card wishlist-section">
+          <h3 class="section-title">Top Picks From Your Wishlist</h3>
+          <div class="wishlist-grid">
+            <div class="wishlist-item">
+              <div class="item-thumb">👜</div>
+              <div class="item-info">
+                <div class="item-name">Cognac Leather Tote</div>
+                <div class="item-desc">Italian leather</div>
+                <div class="item-price">$245.00</div>
+              </div>
+            </div>
+            <div class="wishlist-item">
+              <div class="item-thumb">👜</div>
+              <div class="item-info">
+                <div class="item-name">Vintage Canvas Bag</div>
+                <div class="item-desc">1970s collection</div>
+                <div class="item-price">$189.00</div>
+              </div>
+            </div>
+            <div class="wishlist-item">
+              <div class="item-thumb">👜</div>
+              <div class="item-info">
+                <div class="item-name">Burgundy Crossbody</div>
+                <div class="item-desc">Suede finish</div>
+                <div class="item-price">$125.00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="widget">
+          <h4 class="widget-title">Quick Actions</h4>
+          <ul class="widget-list">
+            <li><a href="#">View all orders</a></li>
+            <li><a href="#">Manage wishlist</a></li>
+            <li><a href="#">Saved addresses</a></li>
+            <li><a href="#">Payment methods</a></li>
+            <li><a href="#">Account settings</a></li>
+          </ul>
+        </div>
+
+        <div class="widget">
+          <h4 class="widget-title">Support</h4>
+          <div class="widget-content">
+            Need help with an order? <a href="#">Contact support</a> or visit our <a href="#">help center</a>.
+          </div>
+        </div>
+
+        <div class="widget">
+          <h4 class="widget-title">Account</h4>
+          <div class="widget-content">
+            Keep your account secure. <a href="#">Update password</a> or enable two-factor authentication.
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>

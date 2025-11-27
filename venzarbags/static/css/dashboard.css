@@ -1,0 +1,74 @@
+/* Vintage-themed dashboard styles for Venzar */
+:root{
+  --cream:#f6efe6;
+  --leather:#5b4036;
+  --burnt:#c75b3b;
+  --muted:#6b5e4a;
+  --card:#fff8f4;
+  --glass: rgba(255,255,255,0.7);
+  --accent-2: var(--burnt);
+  --ink:#231f20;
+  --radius:14px;
+  --container:1100px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;background:linear-gradient(180deg,var(--cream), #efe6db);color:var(--ink);-webkit-font-smoothing:antialiased}
+
+/* subtle paper grain */
+.grain{pointer-events:none;position:fixed;inset:0;mix-blend-mode:multiply;opacity:0.04;background-image:radial-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);background-size:4px 4px}
+
+.topnav{padding:20px 24px;display:flex;align-items:center;justify-content:center}
+.container{width:100%;max-width:var(--container);display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--leather), #8b5a4a);color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-family:Manrope}
+.brand-title{font-weight:700;font-family: 'Playfair Display', serif}
+.brand-sub{font-size:12px;color:var(--muted)}
+
+nav{display:flex;gap:10px;align-items:center}
+.nav-link{padding:8px 12px;border-radius:10px;color:var(--muted);font-weight:600;text-decoration:none}
+.nav-link.active{background:linear-gradient(90deg, rgba(199,91,59,0.06), rgba(43,111,107,0.04));color:var(--ink)}
+
+main{width:100%;max-width:var(--container);margin:18px auto;padding:0 24px}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+
+.metrics{grid-column:span 12;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:0 8px 28px rgba(35,31,31,0.06);border:1px solid rgba(35,31,31,0.04)}
+.kpi{font-size:12px;color:var(--muted);letter-spacing:0.6px}
+.kpi-value{font-size:20px;font-weight:700;margin-top:8px}
+.kpi-note{font-size:12px;color:var(--muted);margin-top:6px}
+
+.col-main{grid-column:span 8;display:flex;flex-direction:column;gap:18px}
+.col-side{grid-column:span 4}
+
+.card h3{margin:0 0 8px;font-size:15px;color:var(--leather);font-family:'Playfair Display',serif}
+
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.product{display:flex;gap:12px;align-items:center}
+.thumb{width:64px;height:64px;border-radius:10px;background:linear-gradient(180deg,#f7efe7,#fff);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700;border:1px dashed rgba(43,34,30,0.06)}
+
+.orders-table{width:100%;border-collapse:collapse}
+.orders-table th,.orders-table td{padding:12px 8px;text-align:left;border-bottom:1px solid rgba(35,31,31,0.04);font-size:14px;color:var(--muted)}
+.orders-table th{color:var(--leather);font-weight:700}
+
+.widget-list{display:flex;flex-direction:column;gap:12px}
+
+.muted-list{margin:8px 0;padding-left:16px;color:var(--muted)}
+
+.btn{display:inline-block;padding:9px 12px;border-radius:10px;background:var(--leather);color:white;text-decoration:none;font-weight:700}
+.muted-note{font-size:13px;color:var(--muted);margin-top:6px}
+.card-title{font-size:18px;font-weight:700;color:var(--leather);margin:0}
+.card-header{display:flex;justify-content:space-between;align-items:center}
+.card-actions{display:flex;gap:8px;align-items:center}
+.wish-name{font-weight:700;color:var(--leather)}
+.wish-price{margin-top:6px;color:var(--accent-2);font-weight:700}
+
+@media (max-width:1100px){
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .products-grid{grid-template-columns:repeat(2,1fr)}
+  .col-main{grid-column:span 12}
+  .col-side{grid-column:span 12}
+}
+@media (max-width:640px){
+  .metrics{grid-template-columns:repeat(1,1fr)}
+  .products-grid{grid-template-columns:1fr}
+}
